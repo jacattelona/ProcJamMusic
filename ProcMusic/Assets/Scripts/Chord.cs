@@ -9,7 +9,8 @@ public class Chord : MonoBehaviour
     const float LEFT = -7.5f;
     const float RIGHT = 7.5f;
 
-
+    public Color bgColor;
+    public AudioClip bgMusic;
     public AudioClip[] notes;
     public GameObject particle;
 
@@ -30,6 +31,7 @@ public class Chord : MonoBehaviour
         if (counter < 0)
         {
             counter = 5f;
+            PlayNote(0);
         }
     }
 
