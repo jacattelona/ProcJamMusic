@@ -11,6 +11,7 @@ public class Chord : MonoBehaviour
 
 
     public AudioClip[] notes;
+    public Dictionary<AudioClip, int> values;
     public GameObject particle;
 
     AudioSource source;
@@ -31,6 +32,35 @@ public class Chord : MonoBehaviour
         {
             counter = 5f;
         }
+    }
+
+    public void AssignChances()
+    {
+        foreach(AudioClip a in notes) {
+            values[a] = (int) Random.value*100;
+        }
+   
+    }
+
+    public AudioClip[] getNotes()
+    {
+        AudioClip[] b = new AudioClip[3];
+        int check = 0;
+        while(check < 3)
+        {
+            int rand = (int)Random.value * 100;
+            foreach(AudioClip c in values.Keys)
+            {
+                if (values[c] == rand)
+                {
+                    b[check] = c;
+                    check++;
+                    AssignChances();
+                }
+
+            }
+        }
+        return (b);
     }
 
 
