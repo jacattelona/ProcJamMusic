@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
-    public Chord[] chords;
-
+    [SerializeField]
+    Chord[] chords;
+    [SerializeField]
+    Material bg;
 
     void Start()
     {
