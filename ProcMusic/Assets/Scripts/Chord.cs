@@ -21,12 +21,14 @@ public class Chord : MonoBehaviour
     float counter = 5f;
     bool active = false;
 
-
+    ParticleSystem background;
 
     // Start is called before the first frame update
     void Start()
     {
         source = GetComponent<AudioSource>();
+        background = GetComponentInChildren<ParticleSystem>();
+        background.Stop();
         counter = averageTime + (Random.value * maxSpread - (maxSpread / 2f));
     }
 
@@ -48,6 +50,10 @@ public class Chord : MonoBehaviour
     public void Activate(bool act)
     {
         active = act;
+        if (act)
+            background.Play();
+        else
+            background.Stop();
     }
 
     public void AssignChances()
