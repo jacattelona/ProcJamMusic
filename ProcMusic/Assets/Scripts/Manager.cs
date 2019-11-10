@@ -25,10 +25,10 @@ public class Manager : MonoBehaviour
     void Start()
     {
         chances = new double[4, 4] {
-            {.1, .2, .35, .35},
-            {.1, .1, .1, .1},
-            {.1, .1, .1, .1},
-            {.1, .1, .1, .1}
+            {.1, .45, .6, 1},
+            {.25, .35, .65, 1},
+            {.4, .7, .8, 1},
+            {.25, .6, .9, 1}
         };
 
         GameObject chordParent = transform.GetChild(1).gameObject;
@@ -48,8 +48,8 @@ public class Manager : MonoBehaviour
         {
             c.Activate(false);
         }
-        chords[1].Activate(true);
-        switchingTo = 1;
+        chords[0].Activate(true);
+        switchingTo = -1;
         bg.color = chords[0].bgColor;
     }
 
@@ -85,7 +85,30 @@ public class Manager : MonoBehaviour
 
     void NextChord()
     {
-        int choice = (int)Random.Range(0, 3.99f);
+        double rand = Random.Range(0, 1f);
+        int choice = state;
+
+        if (rand <= chances[state, 0])
+        {
+            choice = 0;
+        }
+
+        else if (rand > chances[state,0] && rand <= chances[state, 1])
+        {
+            choice = 1;
+        }
+
+        else if (rand > chances[state,1] && rand <= chances[state, 2])
+        {
+            choice = 2;
+        }
+
+        else if (rand > chances[state,2] && rand <= chances[state, 3])
+        {
+            choice = 3;
+        }
+
+
         if (choice != state)
         {
             switchingTo = choice;
