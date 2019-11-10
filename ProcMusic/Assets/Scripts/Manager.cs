@@ -7,7 +7,7 @@ public class Manager : MonoBehaviour
     Chord[] chords;
     AudioSource[] bgSources;
     double[,] chances;
-
+    private float averageLength;
     [SerializeField]
     Material bg;
 
@@ -24,6 +24,7 @@ public class Manager : MonoBehaviour
 
     void Start()
     {
+        averageLength = 10f;
         chances = new double[4, 4] {
             {.1, .45, .6, 1},
             {.25, .35, .65, 1},
@@ -77,7 +78,7 @@ public class Manager : MonoBehaviour
             if (counter <= 0)
             {
                 NextChord();
-                counter = 10;
+                counter = averageLength;
             }
         }
     }
@@ -116,7 +117,10 @@ public class Manager : MonoBehaviour
             chords[switchingTo].Activate(true);
         } 
     }
-
+    public void setAverageLength(float newAverage)
+    {
+        averageLength = newAverage;
+    }
     public void SetAverageNoteTime(float average)
     {
         foreach (Chord c in chords)
