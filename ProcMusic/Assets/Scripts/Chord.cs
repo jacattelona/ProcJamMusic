@@ -14,26 +14,40 @@ public class Chord : MonoBehaviour
     public AudioClip[] notes;
     public Dictionary<AudioClip, int> values;
     public GameObject particle;
+    public float averageTime = 3f;
+    public float maxSpread = 4f;
 
     AudioSource source;
     float counter = 5f;
+    bool active = false;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         source = GetComponent<AudioSource>();
-        
+        counter = averageTime + (Random.value * maxSpread - (maxSpread / 2f));
     }
 
     // Update is called once per frame
     void Update()
     {
-        counter -= Time.deltaTime;
-        if (counter < 0)
+        if (active)
         {
-            counter = 5f;
-            PlayNote(0);
+            counter -= Time.deltaTime;
+            if (counter < 0)
+            {
+                counter = averageTime + (Random.value * maxSpread - (maxSpread/2f));
+                if (counter < .25f) counter = .25f;
+                PlayNote(0);
+            }
         }
+    }
+
+    public void Activate(bool act)
+    {
+        active = act;
     }
 
     public void AssignChances()
