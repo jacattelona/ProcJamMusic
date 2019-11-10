@@ -117,5 +117,21 @@ public class Manager : MonoBehaviour
         } 
     }
 
+    public void SetAverageNoteTime(float average)
+    {
+        foreach (Chord c in chords)
+        {
+            c.averageTime = average;
+        }
+    }
+
+    public void SetMaxNoteTime(float max)
+    {
+        foreach (Chord c in chords)
+        {
+            c.maxSpread = max;
+        }
+    }
+
 
 }
