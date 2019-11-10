@@ -24,7 +24,7 @@ public class Chord : MonoBehaviour
     ParticleSystem background;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         source = GetComponent<AudioSource>();
         background = GetComponentInChildren<ParticleSystem>();
