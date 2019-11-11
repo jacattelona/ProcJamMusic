@@ -42,7 +42,8 @@ public class Chord : MonoBehaviour
             {
                 counter = averageTime + (Random.value * maxSpread - (maxSpread/2f));
                 if (counter < .25f) counter = .25f;
-                PlayNote(0);
+                int choice = (int)Random.Range(0, 4.99f);
+                PlayNote(choice);
             }
         }
     }
@@ -89,7 +90,7 @@ public class Chord : MonoBehaviour
 
     void PlayNote(int index)
     {
-        //source.PlayOneShot(notes[index]);
+        source.PlayOneShot(notes[index]);
         GameObject part = Instantiate(particle);
         part.transform.position = new Vector3(Random.Range(LEFT, RIGHT), Random.Range(BOTTOM, TOP), 0);
     }

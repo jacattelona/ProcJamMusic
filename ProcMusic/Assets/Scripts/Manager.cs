@@ -50,6 +50,7 @@ public class Manager : MonoBehaviour
             c.Activate(false);
         }
         chords[0].Activate(true);
+        bgSources[0].volume = 1;
         switchingTo = -1;
         bg.color = chords[0].bgColor;
     }
